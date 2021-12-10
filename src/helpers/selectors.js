@@ -19,3 +19,16 @@ export function getAppointmentsForDay(state, day) {
   // console.log("appts in selectors: ",appointments)
   return appointments;
 };
+
+export function getInterview(state, interview) {
+
+  if (!interview) {
+    return null;
+  }
+  const parsedinterview = {
+    'student': interview.student,
+    'interviewer': state.interviewers[interview.interviewer] 
+  }
+  
+  return parsedinterview;
+}
