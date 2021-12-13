@@ -9,7 +9,7 @@ import Form from './Form';
 import Status from './Status';
 
 export default function Appointment(props) {
-  const { time, interview, interviewers, id, bookInterview } = props;
+  const { time, interview, interviewers, id, bookInterview, cancelInterview } = props;
   const EMPTY = 'EMPTY';
   const SHOW = 'SHOW';
   const CREATE = 'CREATE';
@@ -23,11 +23,19 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    transition(SAVING)
+    transition(SAVING);
     bookInterview(id, interview)
-    .then((resp) => {
+    .then(() => {
       transition(SHOW);
     });
+  }
+
+  function cancel(id) {
+    transition(SAVING);
+    cancelInterview(id)
+    .then(() => {
+      transition(EMPTY);
+    })
   }
 
   return (
@@ -38,6 +46,8 @@ export default function Appointment(props) {
         <Show
           student={interview.student}
           interviewer={interview.interviewer}
+          onDelete={cancel}
+          id={id}
         />
       )}
       {mode === SAVING && <Status />}
