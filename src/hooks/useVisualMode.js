@@ -6,16 +6,16 @@ export default function useVisualMode(initial) {
   
   function transition(value, replace = false) {
     if (replace === true) {
-      setHistory((current) => {
-        const currentNew = [...current];
+      setHistory((prev) => {
+        const currentNew = [...prev];
         currentNew[1] = value;
         setMode(value);
         return currentNew;
       });
       return;
     }
-    setHistory((current) => {
-      const currentNew = [...current];
+    setHistory((prev) => {
+      const currentNew = [...prev];
       currentNew.push(value);
       return currentNew;
     });
