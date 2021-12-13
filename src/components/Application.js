@@ -8,8 +8,18 @@ import Appointment from "./Appointment";
 import {getAppointmentsForDay, getInterview, getInterviewersForDay } from '../helpers/selectors';
 
 export default function Application(props) {
-  // const [ day, setDay ] = useState("Monday");
-  // const [ days, setDays ] = useState([]);
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+    const appointments = {
+      ...state.appointments,
+      [id] : appointment
+    };
+    setState({...state, appointments});
+  };
 
   const [state, setState] = useState({
     day: "Monday",
@@ -42,6 +52,7 @@ export default function Application(props) {
         time={appointmentItem.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   })
