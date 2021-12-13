@@ -83,7 +83,8 @@ export default function Appointment(props) {
       {mode === EDIT && (
         <Form
           student={interview.student}
-          interviewer={interview.interviewer.id}
+          // If interview was not set (IDK if this is ok, but it fixes errors)
+          interviewer={!interview.interviewer ? null : interview.interviewer.id}
           id={id}
           interviewers={interviewers}
           onCancel={back}
