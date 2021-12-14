@@ -2,6 +2,19 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 export default function useApplicationData() {
+
+  function getEmptySpots(state) {
+    const day = state.days.filter((i) => i.name === state.day)[0];
+    const appointments = day.appointments;
+    let empty = 0;
+    appointments.forEach((i) => {
+      if (!state.appointments[i].interview) {
+        empty++;
+      }
+    })
+    return empty;
+  };
+
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -13,7 +26,18 @@ export default function useApplicationData() {
     };
     return axios.put(`/api/appointments/${id}`, {interview})
     .then((resp) => {
-      setState({...state, appointments});
+      setState((prev) => {
+        const spots = getEmptySpots({...prev, appointments});
+        let day = prev.days.filter((i) => i.name === prev.day)[0];
+        const dayIndex = day.id;
+        day = {
+            ...day,
+            spots: spots
+        };
+        const days = [...prev.days]
+        days[dayIndex - 1] = day;
+        return {...prev, appointments, days};
+      });
       return resp;
     });
   };
@@ -28,8 +52,20 @@ export default function useApplicationData() {
       [id]: appointment
     };
     return axios.delete(`/api/appointments/${id}`)
-    .then(() => {
-      setState({...state, appointments});
+    .then((resp) => {
+      setState((prev) => {
+        const spots = getEmptySpots({...prev, appointments});
+        let day = prev.days.filter((i) => i.name === prev.day)
+        const dayIndex = day[0].id;
+        day = {
+            ...day[0],
+            spots: spots
+        };
+        const days = [...prev.days]
+        days[dayIndex - 1] = day;
+        return {...prev, appointments, days};
+      });
+      return resp;
     });
   };
 
@@ -39,6 +75,7 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {}
   });
+
 
   const setDay = (day) => setState({...state, day});
   
@@ -52,6 +89,7 @@ export default function useApplicationData() {
         setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
       })
     }, []);
+
 
     return { bookInterview, cancelInterview, state, setDay};
 };

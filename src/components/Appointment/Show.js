@@ -8,7 +8,6 @@ export default function Show(props) {
         <h2 className="text--regular">{student}</h2>
         <section className="interviewer">
           <h4 className="text--light">Interviewer</h4>
-          // If interview was not set (IDK if this is ok, but it fixes errors)
           <h3 className="text--regular">{!interviewer ? "" : interviewer.name}</h3>
         </section>
       </section>
