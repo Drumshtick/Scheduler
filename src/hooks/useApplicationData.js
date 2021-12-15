@@ -76,7 +76,6 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
-
   const setDay = (day) => setState({...state, day});
   
   useEffect(() => {
@@ -89,7 +88,6 @@ export default function useApplicationData() {
         setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
       })
     }, []);
-
 
     return { bookInterview, cancelInterview, state, setDay};
 };

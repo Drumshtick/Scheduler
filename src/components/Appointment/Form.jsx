@@ -19,45 +19,15 @@ export default function Form(props) {
     reset();
     onCancel();
   };
-  // function validate() {
-  //   const err = {
-  //     studentMissing: false,
-  //     interviewerMissing: false
-  //   };
-  //   if (student === "") {
-  //     err.studentMissing = true;
-  //   }
 
-  //   // if (!interviewer) {
-  //   //   err.interviewerMissing = true;
-  //   // }
-
-  //   // if (err.interviewerMissing && err.studentMissing) {
-  //   //   setError("Student name and Interviewer must be selected");
-  //   //   return;
-  //   // }
-
-  //   // if (err.interviewerMissing && !err.studentMissing) {
-  //   //   setError("Interviewer must be selected");
-  //   //   return;
-  //   // }
-
-  //   if (!err.interviewerMissing && err.studentMissing) {
-  //     setError("Student name cannot be blank");
-  //     return;
-  //   }
-
-  //   onSave(student, interviewer);
-  // };
   function validate() {
-    if (student === "") {
-      setError("Student name cannot be blank");
+    if (student === "" || !interviewer) {
+      setError("Student name cannot be blank and interviewer must be selected");
       return;
     }
-
-
     onSave(student, interviewer);
   };
+
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
