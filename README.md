@@ -7,6 +7,7 @@ Demonstrates a variety of technology including but not limited too:
   * Sass
   * HTML/CSS
   * Jest/Storybook/Cypress
+  * API Usage
 
 Create an appointment with available interviewers! Update existing interviews or cancel an interview all from one location.
 
@@ -14,13 +15,14 @@ Create an appointment with available interviewers! Update existing interviews or
 * Spots update in side panel as interviews are setup or deleted
 * Interviewers are only displayed if their availability needs are met for that day
 * When a day has no more availability it will appear grayed out
+* Schedule data is retrieved from an external API
 ## Screenshots
 
 <center><img src="./Docs/Capture.PNG"></center>
 
 <center><img src="./Docs/hover-appt.PNG"></center>
 
-<center><img src="./Docs/edit-new.PNG"></center>\
+<center><img src="./Docs/edit-new.PNG"></center>
 
 ## Setup
 
