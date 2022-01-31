@@ -1,6 +1,6 @@
 # Interview Scheduler
 
-A single page react app that populates the page with interviews from an express API. Adding deleting or editing makes changes to the back-end. As this is a demo application, reseting the DB will randomize the data in the API. Included is a demonstration of props, custom hooks, selectors and a variety of testing environments.
+A single page react app that populates the page with interviews from [an express API](https://github.com/Drumshtick/scheduler-api). Adding deleting or editing makes changes to the back-end. As this is a demo application, reseting the DB will randomize the data in the API. Included is a demonstration of props, custom hooks, selectors and a variety of testing environments.
 
 Beyond React, this app includes the use of:
   * React/Javascript
