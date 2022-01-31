@@ -1,13 +1,13 @@
 # Interview Scheduler
 
-A single page react app that makes API calls then populates the page with interviews. Adding deleting or editing with result in an API call which will ensure that any changes are persistent. Demonstration of props, custom hooks, selectors and a variety of testing environments.
+A single page react app that populates the page with interviews from an express API. Adding deleting or editing with result in an API call which will ensure that any changes are persistent. Demonstration of props, custom hooks, selectors and a variety of testing environments.
 
 Demonstrates a variety of technology including but not limited too:
   * React/Javascript
   * Sass
   * HTML/CSS
   * Jest/Storybook/Cypress
-  * API Usage
+  * API Endpoints
 
 Create an appointment with available interviewers! Update existing interviews or cancel an interview all from one location.
 
